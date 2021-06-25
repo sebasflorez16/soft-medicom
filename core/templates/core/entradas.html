@@ -1,0 +1,24 @@
+ {% extends 'core/base.html' %}
+  {% load crispy_forms_tags %}
+  {% load static %}
+  {% block content %}
+
+      <!-- End of Main Content -->
+  <h1 class="h3 mb-4 text-gray-800">Blank Page</h1>
+ <div class="container-fluid">
+<form action="" enctype="multipart/form-data" method="POST">
+    {% csrf_token %}
+
+    {{ form|crispy }}
+   <div class="text-center">
+       <input type="submit" class="btn btn-primary btn-block py-2" value="Enviar">
+   </div>
+    <br>
+       <div class="text-center">
+
+           <a href="{% url 'core:lista' %}"><strong><p>Si deseas ver la lista de pacientes haz clik </p></strong></a>
+   </div>
+</form>
+ </div>
+
+    {% endblock content %}

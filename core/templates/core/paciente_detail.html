@@ -1,0 +1,147 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block content %}
+<main role="main">
+  <div class="container">
+    <div class="row mt-3">
+              <!-- Earnings (Monthly) Card Example -->
+            <div class="col-xl-12 col-md-12 mb-4">
+              <div class="card border-left-info shadow h-100 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-6">
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">Aqui se encuentra la informacion detallada
+                      del paciente. En esta pagina puedes actualizar la infomacion y hasta eliminarlo de tu
+                      base de datos.</div>
+                    </div>
+                    <div class="col-auto">
+                      <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+                  <!-- Pie Chart -->
+            <div class="col-xl-4 col-lg-5">
+              <div class="card shadow mb-4">
+                <!-- Card Header - Dropdown -->
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                  <h6 class="m-0 font-weight-bold text-primary">{{pacientes.name}}</h6>
+                  <div class="dropdown no-arrow">
+                  </div>
+                </div>
+                <!-- Card Body -->
+                <div class="card-body">
+                  <div class="chart-pie pt-4 pb-2">
+                    <img src="{{pacientes.image.url}}" class="img-fluid">
+                  </div>
+                  <div class="mt-4 text-center small">
+                                    <p>{{pacientes.cedula}}</p>
+                    {{pacientes.name}}
+                    {{pacientes.cedula}}
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-6 mb-4 float-right bg-gray-200">
+                <div class="card-header py-3">
+                  <h6 class="m-0 font-weight-bold text-primary">Infomacion del paciente</h6>
+                </div>
+                <div class="card-body">
+                  <h3><strong>Nombre de paciente</strong></h3>
+                  <h4 class="text-gray-900">{{pacientes.name}}</h4>
+                  <hr>
+                  <h3><strong>Cedula</strong></h3>
+                  <h4 class="text-gray-900">{{pacientes.cedula}}</h4>
+                  <hr>
+                  <h3><strong>Telefono</strong></h3>
+                  <h4 class="text-gray-900">{{pacientes.phone}}</h4>
+                  <hr>
+                  <h3><strong>Fecha de nacimiento</strong></h3>
+                  <h4 class="text-gray-900">{{pacientes.nacdate}}</h4>
+                  <h4 class="text-gray-900">{{hitorias}}</h4>
+                  <hr>
+                  <p>{{pacientes.calcular_años}} Años</p>
+                  <hr>
+                </div>
+
+   <div class="text-center">
+       <a href="{% url 'core:update' pacientes.cedula %}">
+    <input type="submit" class="btn btn-primary btn-block" value="ACTUALIZAR Información del paciente" />
+        </a>
+    </div>
+    <hr>
+        <div class="text-center">
+
+    </div>
+
+          </div>
+        </div>
+     </div>
+  </div>
+
+    <div class="row ml-5">
+                <div class="col-xl-3 col-md-6 mb-4">
+              <div class="card border-left-primary shadow h-100 py-2">
+                <a href="{% url 'core:examenes_list' pacientes.pk %}">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <!--<div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Earnings (Monthly)</div>-->
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">Lista de Examenes</div>
+                    </div>
+                    <div class="col-auto">
+                      <i class="fas fa-list fa-2x text-primary-300"></i>
+                    </div>
+                  </div>
+                </div>
+                </a>
+              </div>
+            </div>
+
+        <div class="col-xl-3 col-md-6 mb-4">
+              <div class="card border-left-warning shadow h-100 py-2 ">
+                <a href="{% url 'core:historias_list' pacientes.pk %}">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <!--<div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Earnings (Monthly)</div>-->
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">Lista de Historias Clinicas</div>
+                    </div>
+                    <div class="col-auto">
+                      <i class="fas fa-file-alt fa-3x" style="color:#f6c23e"></i>
+
+                    </div>
+                  </div>
+                </div>
+                </a>
+              </div>
+            </div>
+
+
+             <div class="col-xl-3 col-md-6 mb-4">
+              <div class="card border-left-danger shadow h-100 py-2">
+                <a href="{% url 'core:examenes_list' pacientes.pk %}">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <!--<div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Earnings (Monthly)</div>-->
+                        <a href="{% url 'core:delete' pacientes.cedula %}">
+                                <div class="h5 mb-0 font-weight-bold text-gray-800" type="submit" value="Delete">ELIMINAR</div>
+                        </a>
+                    </div>
+                    <div class="col-auto">
+                      <i class="fas fa-trash-alt fa-3x text-primary-300" style="color:#d9534f"></i>
+                    </div>
+                  </div>
+                </div>
+                </a>
+              </div>
+            </div>
+    </div>
+  </div>
+
+    </div>
+  </div>
+</main>
+{% endblock %}

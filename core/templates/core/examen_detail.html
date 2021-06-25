@@ -1,0 +1,76 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block content %}
+
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-6 mb-4 mr-2 bg-gray-200">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Infomacion del paciente</h6>
+            </div>
+        <div class="card-body">
+            {% for examenes in object_list %}
+            <h3><strong>Nombre de paciente</strong></h3>
+            <h4 class="text-gray-900">{{examenes.name}}</h4>
+            <hr>
+            <h3><strong>Referencia del examen</strong></h3>
+            <h4 class="text-gray-900">{{examenes.id}}</h4>
+            <hr>
+            <hr>
+            <h3><strong>Fecha del Examen</strong></h3>
+            <h4 class="text-gray-900">{{examenes.created}}</h4>
+            <hr>
+        </div>
+    </div>
+
+    <!-- Tabla de datos choice como fiebre -->
+
+    <div class="col-md-4 .offset-md-4">
+        <table class="table">
+            <thead class="thead-dark">
+                <tr class="">
+                    <h2 scope="col">Elecciones del examen</h2>
+                </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <th scope="row">Fiebre</th>
+                <td class="mr-2">{{ examenes.fiebre }}</td>
+            </tr>
+            <tr>
+                <th scope="row">Ayuno</th>
+                <td>{{ examenes.ayuno }}</td>
+            </tr>
+            <tr>
+                <th scope="row">Diabetes</th>
+                <td>{{ examenes.diabetes }}</td>
+            </tr>
+
+             <th scope="row">Años</th>
+                <td>{{examenes.años}}</td>
+            </tbody>
+        </table>
+    </div>
+    </div>
+</div>
+{% endfor %}
+
+<div>
+    <h3><strong>Examenes Realizados</strong></h3>
+    {% for price in object_list %}
+    <section class="text">{{price.examenes}}</section>
+    <h3><strong>Precio</strong></h3>
+    <section class="text">{{price.precio}}</section>
+    {% endfor %}
+</div>
+
+<div class="text-center">
+    <a href="#">
+        <input type="submit" class="btn btn-primary btn-block" value="ACTUALIZAR Información del paciente" />
+    </a>
+</div>
+
+
+{% endblock content %}

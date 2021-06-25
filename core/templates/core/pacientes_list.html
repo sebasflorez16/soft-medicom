@@ -1,0 +1,62 @@
+  {% extends 'core/base.html' %}
+  {% load static %}
+  {% block extra_head %}
+  {% endblock %}
+  {% block content %}
+        <!-- Begin Page Content -->
+<div class="container-fluid">
+  {% if 'ok' in request.GET %}
+    <div class="alert alert-danger" role="alert">
+  El registro del paciente ha sido eliminado!
+</div>
+  {% endif %}
+
+ {% if messages %}
+     {% for message in messages %}
+         <div class="text-center alert alert-{{ message.tags }}">
+             <button type="button" class="close" data-dismiss="alert">&times;</button>
+             {{ message }}
+         </div>
+     {% endfor %}
+ {% endif %}
+
+<table>
+       <div class="container-fluid">
+          <!-- DataTales Example -->
+          <div class="card shadow mb-4">
+            <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-primary">Base de datos pacientes ingresados</h6>
+            </div>
+              <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th>Nombre</th>
+                      <th>Cedula</th>
+                      <th>Telefono</th>
+                      <th>Fecha de nacimiento</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  {% for paciente in pacientes_list %}
+                    <tr>
+                      <td>{{paciente.name}}</td>
+                    <td><a href="{% url 'core:detail' paciente.cedula %}">{{paciente.cedula}}</a></td>
+                      <td>{{paciente.phone}}</td>
+                      <td>{{pacinete.edad}}</td>
+                      <td>{{paciente.nacdate}}</td>
+                    </tr>
+                  {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+</table>
+</div>
+
+      <!-- End of Main Content -->
+  {% endblock content %}
+
+{% block extra_script %}
+{% endblock %}

@@ -1,0 +1,74 @@
+
+  {% extends 'core/base.html' %}
+  {% load static %}
+  {% block extra_head %}
+  {% endblock %}
+  {% block content %}
+        <!-- Begin Page Content -->
+<div class="container-fluid">
+  <!--{% if 'ok' in request.GET %}
+    <div class="alert alert-danger" role="alert">
+        El registro del paciente ha sido eliminado!
+    </div>
+  {% endif %}-->
+<table>
+       <div class="container-fluid card shadow mb-4">
+          <!-- DataTales Example -->
+           <div class="card-header py-6 mt-4">
+              <h2 class="m-0 font-weight-bold text-primary">LISTA DE EXAMENES</h2>
+           </div>
+           <h4>
+            <a href="#" onclick="return abrir_modal('{% url 'core:examenes'  %}')" class="btn btn-warning btn-icon-split w-20 p-2 ml-5">Agregar Examen {{pacientes.name}}</button></a>
+           </h4>
+              <div class="table-responsive">
+                  <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead class="thead-dark">
+                      <tr>
+                        <th>REF</th>
+                        <th>Nombre</th>
+                        <th>F. Creacion</th>
+                        <th>Accion</th>
+                    </tr>
+                  </thead>
+                    <br>
+                    {% for examen in examenes_list %}
+                    {% if not examen %}
+                        <div class="alert alert-info">Aun no ha ingresado ningun examen. ¿Desea añadir uno nuevo?</div>
+                  {% endif %}
+                  <tbody>
+
+                    <tr>
+                        <td><strong><a href="{% url 'core:examen_detail' examen.pk %}">{{ examen.id }}</a></strong></td>
+                        <td><strong>{{ examen.name }}</strong></td>
+                        <td>{{examen.created}}</td>
+                        <td>
+                            <span class="table-remove">
+                                <a href="{% url 'core:examen_delete'  examen.pk %}"   class="btn btn-danger btn-circle btn-sm mr-4">
+                                    <i class="fas fa-trash"></i>
+                                </a>
+                                <a href="{% url 'reportes:examenes_print_all' %}"  class="btn btn-primary btn-circle btn-sm mr-4">
+                                    <i class="fas fa-print"></i>
+                                </a>
+                            </span>
+                            <span>
+                                <a href="{% url 'reportes:examen_print_one' examen.id %}" class="btn btn-warning btn-circle btn-sm">
+                                    <i class="fas fa-exclamation-triangle"></i>
+                                </a>
+                            </span>
+                        </td>
+                    </tr>
+                  </tbody>
+                    {% endfor %}
+                </table>
+            </div>
+          </div>
+
+</table>
+</div>
+
+      <!-- End of Main Content -->
+  {% endblock content %}
+
+{% block extra_script %}
+
+{% endblock %}

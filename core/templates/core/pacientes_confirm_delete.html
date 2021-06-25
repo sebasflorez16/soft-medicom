@@ -1,0 +1,16 @@
+
+{% extends 'core/base.html' %}
+  {% load crispy_forms_tags %}
+  {% load static %}
+  {% block content %}
+
+<br><br><br><br>
+  <form action="" enctype="multipart/form-data" method="POST">
+    {% csrf_token %}
+   <div class="text-center">
+       <h2>Estas seguro que deseas eliminar al paciente: "{{pacientes.name}}"?</h2>
+       <br><br>
+       <input type="submit" class="btn btn-danger btn-lg px-auto" value="Si deseo eliminar a {{pacientes.name}}">
+   </div></form>
+
+  {% endblock %}
