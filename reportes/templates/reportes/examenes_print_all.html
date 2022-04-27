@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style type="text/css">
+    /* el frame utiliza archivos estaticos como el header o footer que se repite en todas las paginas */
+    @page{
+        size: letter;
+         @frame header_frame {
+            -pdf-frame-content: header_content;
+            left: 50pt; width: 512pt; top: 50pt; height: 40pt;
+        }
+        margin: 1cm;
+
+    }
+
+    </style>
+</head>
+<body>
+<div id="header_content">Lyrics-R-Us</div>
+<br><br><br>
+
+<div class="container">
+        <div class="card">
+            <div class="card-header">
+                <h4>Sistema de Gestion Laboratorio</h4>
+                <h3>Reporte de examenes al {{ today|date:"d/m/Y" }}</h3>
+            </div>
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Fecha</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for examen in obj %}
+                    <tr>
+                        <td>{{ examen.name }}</td>
+                        <td>{{ examen.created | date:"d/m/Y" }}</td>
+                        <td>{{ examen.examenes }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

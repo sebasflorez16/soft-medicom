@@ -25,7 +25,7 @@ SECRET_KEY = 'o6fuj*5u%01xcqy4pi6*fmc*3-o697-6zq@+f5^2_+j0ewp!vu'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['*', 'localhost']
 
 
 # Application definition
@@ -43,6 +43,7 @@ SHARED_APPS = (
 
 TENANT_APPS = (
     'core',
+    'ordenes',
     'crispy_forms',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -65,6 +66,7 @@ INSTALLED_APPS = [
     'shared',
     'core',
     'crispy_forms',
+    'ordenes',
 ]
 
 MIDDLEWARE = [
@@ -106,7 +108,7 @@ DATABASES = {
     'default': {
         # 'ENGINE': 'django.db.backends.postgresql',
         'ENGINE': 'tenant_schemas.postgresql_backend',
-        'NAME': 'medicom',
+        'NAME': 'Soft-medicom',
         'USER': 'admin-medicom',
         'PASSWORD': 'guibsonsid.16',
         'HOST': 'localhost',
@@ -166,3 +168,5 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 TENANT_MODEL = "shared.Client"
 DEFAULT_FILE_STORAGE = 'tenant_schemas.storage.TenantFileSystemStorage'
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'

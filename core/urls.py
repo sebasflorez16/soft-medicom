@@ -30,4 +30,6 @@ core_patterns=([
     path('historias_detail/<slug:pk>/', HistoriasDetail.as_view(), name='hist_detail'),
 
 
+    #ru
+
 ], 'core')

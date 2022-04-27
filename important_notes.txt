@@ -1,0 +1,5 @@
+
+
+Para cambiar el superusuario de casa schema es el siguiente codigo.+
+
+    manage.py tenant_command createsuperuser
