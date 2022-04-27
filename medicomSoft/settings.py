@@ -67,6 +67,9 @@ INSTALLED_APPS = [
     'core',
     'crispy_forms',
     'ordenes',
+    'reportes',
+    'xhtml2pdf',
+    'django_countries'
 ]
 
 MIDDLEWARE = [
@@ -108,7 +111,7 @@ DATABASES = {
     'default': {
         # 'ENGINE': 'django.db.backends.postgresql',
         'ENGINE': 'tenant_schemas.postgresql_backend',
-        'NAME': 'Soft-medicom',
+        'NAME': 'medicom-admin',
         'USER': 'admin-medicom',
         'PASSWORD': 'guibsonsid.16',
         'HOST': 'localhost',

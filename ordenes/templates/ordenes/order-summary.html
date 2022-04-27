@@ -10,7 +10,7 @@
 <ul class="messages">
     <div class="alert alert-success" role="alert">
         {% for message in messages %}
-            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}
         {% endfor %}
     </div>
 </ul>
@@ -52,10 +52,19 @@
 
 
 
+<!--{% if messages %}
+
+<ul class="messages">
+    <div class="alert alert-success" role="alert">
+        {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </div>
+</ul>
+{% endif %}-->
 
 
-
-<div class="vertical-line" style="height: 20px;">
+<div class="vertical-line" style="height: 45px;">
 
 </div>
 
@@ -83,18 +92,18 @@
             <td>{{ order_item.item.item }}</td>
             <td>{{ order_item.item.price }}</td>
             <td>
-                
+                <a href="{% url 'ordenes:remove-single-item-from-cart' order_item.item.slug %}"><i class="fas fa-minus mr-2"></i></a>
                 {{ order_item.quantity }}
-                <a href="{% url 'add-item' order_item.item.slug %}"><i class="fas fa-plus ml-2"></i></a>
+                <a href="{% url 'ordenes:add-item' order_item.item.slug %}"><i class="fas fa-plus ml-2"></i></a>
             </td>
             <td>
             {% if order_item.item.discount_price %}
                 ${{ order_item.get_total_discount_item_price }}
-                <span class="badge badge-primary">Saving ${{ order_item.get_amount_saved }}</span>
+                <span class="badge badge-primary">Ahorro ${{ order_item.get_amount_saved }}</span>
             {% else %}
                 ${{ order_item.get_total_item_price }}
             {% endif %}
-            <a style='color: red;' href="{% url 'remove-from-cart' order_item.item.slug %}">
+            <a style='color: red;' href="{% url 'ordenes:remove-from-cart' order_item.item.slug %}">
                 <i class="fas fa-trash float-right"></i>
             </a>
             </td>
@@ -109,7 +118,6 @@
             </td>
         </tr>
         {% endfor %}
-        <!--
         {% if object.coupon %}
         <tr>
             <td colspan="4"><b>Coupon</b></td>
@@ -118,8 +126,8 @@
         {% endif %}
         {% if object.get_total %}
         <tr>
-            <td colspan="4"><b>Order Total</b></td>
-            <td><b>${{ object.get_total }}</b></td>
+            <td colspan="4"><b>Total</b></td>
+            <td><b>COP   {{ object.get_total }}</b></td>
         </tr>
         <tr>
             <td colspan="5">
@@ -127,7 +135,7 @@
             <a class='btn btn-primary float-right' href='/'>Continue shopping</a>
             </td>
         </tr>
-        {% endif %} -->
+        {% endif %}
         </tbody>
     </table>
 
