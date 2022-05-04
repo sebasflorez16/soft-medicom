@@ -17,6 +17,13 @@ from .forms import CouponForm, CheckoutForm
 
 # Create your views here.
 
+def is_valid_form(values):
+    valid = True
+    for field in values:
+        if field == '':
+            valid = False
+    return valid
+
 class CheckoutView(View):
     def get(self, *args, **kwargs):
         try:
@@ -33,13 +40,23 @@ class CheckoutView(View):
             messages.info(self.request, "No tienes una orden activa")
             return redirect(self.request, 'ordenes:order-summary')
 
+
     def post(self, *args, **kwargs):
         form = CheckoutForm(self.request.POST or None)
         try:
             order = Order.objects.get(user=self.request.user, ordered=False)
             if form.is_valid():
-                order.save()
-                return render(self.request, 'ordenes/checkout.html')
+                form.save()
+                payment_option = form.cleaned_data.get('payment_option')
+
+                if payment_option == 'E':
+                   return redirect('ordenes:succes', payment_option='cash')
+                else:
+                    messages.warning(
+                        self.request, "Invalid payment option selected")
+                    return redirect('ordenes:checkout')
+                    print('No tienes una ordden activa')
+            return render(self.request, 'ordenes/succes.html')
         except ObjectDoesNotExist:
             messages.info(self.request, 'No tienes una orden activa')
             return redirect('ordenes:order-summary')

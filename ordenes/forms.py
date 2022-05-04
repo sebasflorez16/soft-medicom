@@ -8,8 +8,8 @@ from django_countries.widgets import CountrySelectWidget
 
 
 PAYMENT_OPTIONS = (
-    ('Efectivo', 'cash'),
-    ('Electronico', 'on-line')
+    ('E', 'cash'),
+    ('0', 'on-line')
 )
 
 class CheckoutForm(forms.Form):
@@ -18,7 +18,8 @@ class CheckoutForm(forms.Form):
     phone = forms.IntegerField()
     Address = forms.ChoiceField()
     city = forms.CharField()
-    payment = forms.ChoiceField(choices=PAYMENT_OPTIONS)
+    payment_option = forms.ChoiceField(
+        widget=forms.RadioSelect, choices=PAYMENT_OPTIONS)
     stamp_start = forms.DateTimeField()
 
 
